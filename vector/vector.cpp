@@ -77,10 +77,7 @@ int main()
                 searchMax.max1 = arg.id;
             }
         });
-    minimums searchMin;
-    searchMin.min1 = searchMax.max1;
-    searchMin.min2 = searchMin.min1;
-    searchMin.min3 = searchMin.min1;
+    minimums searchMin{ searchMax.max1 ,searchMax.max2 ,searchMax.max3 };
     std::for_each(circus.begin(), circus.end(), [&searchMin](Beast& arg)
         {
             if (searchMin.min1 > arg.id)
