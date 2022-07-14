@@ -52,22 +52,23 @@ int main()
     {
         circus.emplace_back(i, randName(), rand() % 2 , (double)(rand()) / RAND_MAX * (20.0 - 7.0) + 7.0);
     }
-    std::for_each(circus.begin(),circus.end(),[](Beast& arg) {std::cout << arg.id<< "\t\t" <<arg.name<< "\t\t" <<arg.solidity<< "\t\t" <<arg.weigth << '\n'; });
+    std::for_each(circus.begin(),circus.end(),[](Beast& arg) {std::cout << arg.id<< "\t\t" <<arg.name<< "\t\t" <<arg.solidity<< "\t\t" <<arg.weigth << '\n'; });//Без сортировки
 
-    std::shuffle(circus.begin(), circus.end(), std::random_device());
+    std::shuffle(circus.begin(), circus.end(), std::random_device());//Рандомно разбросаны
     std::cout << "\n\n\n";
     std::for_each(circus.begin(), circus.end(), [](Beast& arg) {std::cout << arg.id << "\t\t" << arg.name << "\t\t" << arg.solidity << "\t\t" << arg.weigth << '\n'; });
-    std::sort(circus.begin(), circus.end(), [](Beast id1, Beast id2) {return id1.id < id2.id; });
+    std::sort(circus.begin(), circus.end(), [](Beast id1, Beast id2) {return id1.id < id2.id; });//Сорт по id
     std::cout << "\n\nSort id\n\n";
     std::for_each(circus.begin(), circus.end(), [](Beast& arg) {std::cout << arg.id << "\t\t" << arg.name << "\t\t" << arg.solidity << "\t\t" << arg.weigth << '\n'; });
-    std::sort(circus.begin(), circus.end(), [](Beast weigth1, Beast weigth2) {return weigth1.weigth < weigth2.weigth; });
+    std::sort(circus.begin(), circus.end(), [](Beast weigth1, Beast weigth2) {return weigth1.weigth < weigth2.weigth; });//Сорт по weigth
     std::cout << "\n\nSort weigth\n\n";
     std::for_each(circus.begin(), circus.end(), [](Beast& arg) {std::cout << arg.id << "\t\t" << arg.name << "\t\t" << arg.solidity << "\t\t" << arg.weigth << '\n'; });
-    std::sort(circus.begin(), circus.end(), [](Beast name1, Beast name2) { return name1.name.size() < name2.name.size(); });
+    std::sort(circus.begin(), circus.end(), [](Beast name1, Beast name2) { return name1.name.size() < name2.name.size(); });//Сорт по name
     std::cout << "\n\nSort name\n\n";
     std::for_each(circus.begin(), circus.end(), [](Beast& arg) {std::cout << arg.id << "\t\t" << arg.name << "\t\t" << arg.solidity << "\t\t" << arg.weigth << '\n'; });
+
+
     maximums searchMax;
-    
     std::for_each(circus.begin(), circus.end(), [&searchMax](Beast& arg)
         {
             if (searchMax.max1 < arg.id)
@@ -77,6 +78,7 @@ int main()
                 searchMax.max1 = arg.id;
             }
         });
+
     minimums searchMin{ searchMax.max1 ,searchMax.max2 ,searchMax.max3 };
     std::for_each(circus.begin(), circus.end(), [&searchMin](Beast& arg)
         {
